@@ -1,15 +1,14 @@
 #include <atomic>
-#include <opencv2/opencv.hpp>
-#include <thread>
 
+#include <opencv2/opencv.hpp>
 #define STRIP_FLAG_HELP 1
 #include <gflags/gflags.h>
-
+#include <thread>
 #include "sam.h"
 
 DEFINE_string(pre_model, "models/sam_preprocess.onnx", "Path to the preprocessing model");
 DEFINE_string(sam_model, "models/sam_vit_h_4b8939.onnx", "Path to the sam model");
-DEFINE_string(image, "images/input.jpg", "Path to the image to segment");
+DEFINE_string(image, "images/macos.jpg", "Path to the image to segment");
 DEFINE_string(pre_device, "cpu", "cpu or cuda:0(1,2,3...)");
 DEFINE_string(sam_device, "cpu", "cpu or cuda:0(1,2,3...)");
 DEFINE_bool(h, false, "Show help");
@@ -45,7 +44,8 @@ int main(int argc, char** argv) {
       !parseDeviceName(FLAGS_sam_device, param.providers[1])) {
     std::cerr << "Unable to parse device name" << std::endl;
   }
-
+  std::cout << "sam_pre:" << param.models[0] << "   sam:" << param.models[1] << std::endl;
+ 
   std::cout << "Loading model..." << std::endl;
   Sam sam(param);  // FLAGS_pre_model, FLAGS_sam_model, std::thread::hardware_concurrency());
 

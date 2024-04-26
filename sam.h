@@ -5,14 +5,20 @@
 #include <string>
 #include <list>
 
+#include <onnxruntime_cxx_api.h>
+
+#include <codecvt>
+#include <fstream>
+#include <iostream>
+#include <locale>
+#include <opencv2/opencv.hpp>
+#include <vector>
+
 struct SamModel;
 
-#if _MSC_VER
-class __declspec(dllexport) Sam {
-#else
 class Sam {
-#endif
-  SamModel* m_model{nullptr};
+
+    SamModel* m_model{nullptr};
 
  public:
   struct Parameter {
