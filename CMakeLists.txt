@@ -13,6 +13,7 @@ set(onnxruntime_lib ${onnxruntime_dir}/lib/onnxruntime.lib)
 target_include_directories(
   sam_cpp_test PRIVATE 
   ${onnxruntime_dir}/include
+  ${OpenCV_INCLUDE_DIRS}/include
 )
 target_link_libraries(
   sam_cpp_test PRIVATE

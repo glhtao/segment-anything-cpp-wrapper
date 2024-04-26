@@ -6,8 +6,10 @@
 #include <thread>
 #include "sam.h"
 
-DEFINE_string(pre_model, "models/sam_preprocess.onnx", "Path to the preprocessing model");
-DEFINE_string(sam_model, "models/sam_vit_h_4b8939.onnx", "Path to the sam model");
+//DEFINE_string(pre_model, "models/sam_preprocess.onnx", "Path to the preprocessing model");
+//DEFINE_string(sam_model, "models/sam_vit_h_4b8939.onnx", "Path to the sam model");
+DEFINE_string(pre_model, "mobile_sam/mobile_sam_preprocess.onnx", "Path to the preprocessing model");
+DEFINE_string(sam_model, "mobile_sam/mobile_sam.onnx", "Path to the sam model");
 DEFINE_string(image, "images/macos.jpg", "Path to the image to segment");
 DEFINE_string(pre_device, "cpu", "cpu or cuda:0(1,2,3...)");
 DEFINE_string(sam_device, "cpu", "cpu or cuda:0(1,2,3...)");
@@ -141,8 +143,10 @@ int main(int argc, char** argv) {
       for (auto& p : clickedPoints) {
         if (p.z >= 2) {
           points.push_back({p.x, p.y});
+          std::cout << "points: " << p << std::endl;
         } else {
           nagativePoints.push_back({p.x, p.y});
+          std::cout << "nagativePoints: " << p << std::endl;
         }
       }
 
